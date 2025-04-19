@@ -13,12 +13,12 @@ The codes allow reproduction of the results and figures in the paper.
 ```
 .
 ├── DNS/
-│   ├── cylinder2d_gdmd.py                  # Performs DNS using FEniCSx and applies gDMD
-│   ├── dmd_dict.py                         # Contains core gDMD functions
-│   ├── perform_gdmd_parallel_absdist.py    # Standalone script for performing gDMD on existing DNS data
+│   ├── cylinder2d_gdmd.py   # Performs DNS using FEniCSx and applies gDMD
+│   ├── dmd_dict.py          # Contains core DMD functions
+│   ├── perform_gdmd.py      # Standalone script for performing gDMD on existing DNS data
 ├── PTV/
-│   ├── ptv_calc_meanvel.py             	# Processes PTV data, identifies jet center/lip, and grids the field
-│   └── ptv_perform_gdmd_parallel_absdist_sym.py  # Performs gDMD on the PTV dataset
+│   ├── ptv_calc_meanvel.py  # Processes PTV data, identifies jet center/lip, and grids the field
+│   └── ptv_perform_gdmd.py  # Performs gDMD on the PTV dataset
 ```
 
 ---
