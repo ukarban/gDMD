@@ -58,7 +58,7 @@ This will simulate 2D flow past a cylinder, save the velocity snapshots, and per
 
 #### 🔷 2. Perform gDMD on precomputed DNS data:
 ```bash
-python3 perform_gdmd_parallel_absdist.py
+python3 perform_gdmd.py
 ```
 
 #### 🔷 3. Process PTV Data and Compute Mean Flow:
@@ -68,7 +68,7 @@ python3 ptv_calc_meanvel.py
 
 #### 🔷 4. Perform gDMD on PTV Data:
 ```bash
-python3 PTV/ptv_perform_gdmd_parallel_absdist_sym.py
+python3 ptv_perform_gdmd.py
 ```
 
 ---
