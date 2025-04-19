@@ -1,5 +1,5 @@
 # gDMD
-Codes for performing gap-based dynamic mode decomposition (gDMD) on DNS and PTV datasets. The numerical and experimental datasets analyzed here consist of:
+Gap-based Dynamic Mode Decomposition package for DNS and PTV data analysis. The numerical and experimental datasets analyzed here consist of:
 
 - **Direct Numerical Simulations (DNS)** of flow past a 2D cylinder using [FEniCSx](https://jsdokken.com/dolfinx-tutorial/chapter2/ns_code2.html)
 - **Particle Tracking Velocimetry (PTV)** data of a rectangular jet from (https://github.com/DingShizhe/PTV-Dataset)
