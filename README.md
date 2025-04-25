@@ -83,7 +83,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 If you use this code, please cite the paper:
 
-> *[Your full citation here]*
+> *U. Karban, Dynamic mode decomposition using standard particle image velocimetry data, preprint, 2025. DOI: 10.13140/RG.2.2.34468.18561*
 
 ---
 
