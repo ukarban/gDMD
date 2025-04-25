@@ -4,7 +4,7 @@ Gap-based Dynamic Mode Decomposition package for DNS and PTV data analysis. The 
 - **Direct Numerical Simulations (DNS)** of flow past a 2D cylinder using [FEniCSx](https://jsdokken.com/dolfinx-tutorial/chapter2/ns_code2.html)
 - **Particle Tracking Velocimetry (PTV)** data of a rectangular jet from (https://github.com/DingShizhe/PTV-Dataset)
 
-The codes allow reproduction of the results and figures in the paper.
+The codes allow reproduction of the results and figures in the [paper](http://dx.doi.org/10.13140/RG.2.2.34468.18561).
 
 ---
 
