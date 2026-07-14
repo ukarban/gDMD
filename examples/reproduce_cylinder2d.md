@@ -1,0 +1,29 @@
+# Reproduce the confined-cylinder gDMD example
+
+Generate the DNS/particle-pair database:
+
+```bash
+mpirun -n 4 python scripts/run_cylinder2d_dns.py \
+    --final-time 40 \
+    --stdHdiv 3 \
+    --newseed-num 8 \
+    --output-dir data
+```
+
+Run the baseline gDMD analysis:
+
+```bash
+python scripts/run_cylinder2d_gdmd.py \
+    --input data/final_np_rmin03_T040_stdH03_nsnum08.npz \
+    --output results/cylinder2d_gdmd_results.npz \
+    --n-modes 10 \
+    --n-neighbors 15 \
+    --xlim 0.3 1.5 \
+    --ylim 0.05 0.35 \
+    --gap-weights inv_r \
+    --nproc 8 \
+    --save-figures results/figures_cylinder
+```
+
+For a fast smoke test, reduce `--final-time`, but such a run will not reproduce
+the reported eigenspectra or mode shapes.

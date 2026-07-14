@@ -1,0 +1,16 @@
+name: gdmd-examples
+channels:
+  - conda-forge
+dependencies:
+  - python>=3.10
+  - numpy
+  - scipy
+  - scikit-learn
+  - matplotlib
+  - tqdm
+  - ray-default
+  - gmsh
+  - mpi4py
+  - petsc4py
+  - fenics-dolfinx
+  - fenics-basix

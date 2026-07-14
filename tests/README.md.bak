@@ -1,8 +1,7 @@
-# Dynamic mode decomposition using standard particle image velocimetry data
+# gDMD reproducibility examples: DNS and experimental PTV
 
-This repository provides the reproducibility package for the paper 
-**“Dynamic mode decomposition using standard particle image velocimetry data.”** 
-It contains scripts for applying gap-based Dynamic Mode Decomposition (gDMD) to three datasets:
+This repository contains reproducible scripts for applying gap-based
+Dynamic Mode Decomposition (gDMD) to three examples:
 
 1. a confined two-dimensional cylinder wake,
 2. a fluidic pinball wake with three circular cylinders, and
@@ -18,6 +17,29 @@ The experimental case is split into two analogous preprocessing/analysis stages:
 
 1. construct the mean-flow grid used for interpolation and DMD-window selection;
 2. construct PTV velocity/gap fields and compare gDMD against exact DMD.
+
+Reusable numerical routines live under `src/gdmd/`, whereas case-specific entry
+points live under `scripts/`.
+
+## Shared gDMD conventions
+
+The three gDMD drivers are intentionally aligned. They all use:
+
+- the same second-moment gap-field utility in `src/gdmd/gaps.py`;
+- Ray as the default parallel backend for gap-field construction;
+- the same point-major, component-minor state ordering,
+
+```text
+[q_x(1), q_y(1), q_x(2), q_y(2), ..., q_x(N), q_y(N)]
+```
+
+- the same shared exact-DMD/gDMD comparison routine in `src/gdmd/analysis.py`;
+- the same output naming convention: `E_exact`, `Phi_exact`, `E_gdmd`,
+  `Phi_gdmd`, `E_gdmd_weighted`, `Phi_gdmd_weighted`, `tke_weight`, `xdmd`,
+  and the matched-mode index arrays.
+
+Case-specific differences are isolated to script defaults, for example the DMD
+window, number of neighbours, gap-tensor weighting, and mode-matching weights.
 
 ## Repository layout
 
@@ -49,14 +71,16 @@ gdmd-examples/
 
 ## Installation
 
-The gDMD post-processing scripts and the experimental PTV workflow only require the 
-usual Python scientific stack (`numpy`, `scipy`, `scikit-learn`, `matplotlib`, `ray`, 
-and `tqdm`). The two DNS generation scripts additionally require a working 
-FEniCSx/DOLFINx installation with PETSc, MPI, and Gmsh.
+This repository has two dependency levels. The gDMD post-processing scripts and
+the experimental PTV workflow only require the usual Python scientific stack
+(`numpy`, `scipy`, `scikit-learn`, `matplotlib`, `ray`, and `tqdm`). The two DNS
+generation scripts additionally require a working FEniCSx/DOLFINx installation
+with PETSc, MPI, and Gmsh.
 
-For the DNS examples, 
-**first activate the environment in which FEniCSx/DOLFINx is installed**, 
-then install this repository into that same environment. The recommended workflow
+For the DNS examples, **first activate the environment in which FEniCSx/DOLFINx
+is installed**, then install this repository into that same environment. This is
+important because `run_cylinder2d_dns.py` and `run_pinball_dns.py` import
+`dolfinx`, `petsc4py`, `mpi4py`, and `gmsh` at run time. The recommended workflow
 is therefore:
 
 ```bash
@@ -217,3 +241,12 @@ python scripts/run_ptv_gdmd.py \
 
 Use `--normalized-time` if frequencies should be reported in normalized sample
 units rather than physical units based on the 10 kHz acquisition frequency.
+
+## Notes
+
+- Generated data and figures are intentionally ignored by Git.
+- The full DNS and PTV processing runs can be expensive; the unit test only
+  checks the DMD routine on a synthetic low-dimensional linear system.
+- The DNS and experimental gDMD scripts use the short delay inside each image
+  pair as the gDMD time interval. The DNS storage frequency controls how often
+  independent image pairs are collected; it is not the DMD pair delay.
